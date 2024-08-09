@@ -1,0 +1,126 @@
+// // src/home.js
+// import React, { useEffect, useState } from "react";
+// import logo from "./assets/tvs-lucas-logo.png";
+// import CommonDropdown from "./components/common/commonDropDown";
+// import { Grid, Typography } from "@mui/material";
+// import DateRangeIcon from "@mui/icons-material/DateRange";
+// import AccessTimeIcon from "@mui/icons-material/AccessTime";
+
+// const Home = () => {
+//   const [currentDateTime, setCurrentDateTime] = useState(new Date());
+//   const [selectedValue, setSelectedValue] = useState("");
+
+//   const options = [
+//     { value: 10, label: "Ten" },
+//     { value: 20, label: "Twenty" },
+//     { value: 30, label: "Thirty" },
+//   ];
+
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setCurrentDateTime(new Date());
+//     }, 1000);
+//     return () => clearInterval(timer); // Clean up the interval on component unmount
+//   }, []);
+
+//   const formatDate = (date) => {
+//     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+//   };
+
+//   const formatTime = (date) => {
+//     return date.toLocaleTimeString();
+//   };
+
+//   const handleOpen = () => {
+//     // dispatch(partNumberApi());
+//     // axios.get("http://127.0.0.1:5000/part_number").then((res) => {
+//     //   console.log(res, "demo");
+//     // });
+//   };
+
+//   return (
+//     <div>
+//       <div className="topBar">
+//         <div className="container-fluid">
+//           <div className="row">
+//             <div className="col-3 ">
+//               <img src={logo} alt="Logo" className="img-fluid" />
+//             </div>
+//             <div className="col-4">
+//               <div className="row">
+//                 <div className="col-6 ">
+//                   <CommonDropdown
+//                     id="age-dropdown"
+//                     label="Part Number"
+//                     options={options}
+//                     value={selectedValue}
+//                     onOpen={handleOpen}
+//                     customChange={setSelectedValue}
+//                   />
+//                 </div>
+//                 <div className="col-6 ">
+//                   <CommonDropdown
+//                     id="variety-dropdown"
+//                     label="Variety"
+//                     options={options}
+//                     value={selectedValue}
+//                     customChange={setSelectedValue}
+//                   />
+//                 </div>
+//               </div>
+//             </div>
+//             <div className="col-2">&nbsp;</div>
+//             <div className="col-3">
+//               <div className="counts">
+//                 <Grid
+//                   container
+//                   direction="column"
+//                   alignItems="center"
+//                   spacing={1}
+//                 >
+//                   <Grid item>
+//                     <Grid container alignItems="center">
+//                       <DateRangeIcon />
+//                       <Typography style={{ marginLeft: 8 }}>
+//                         {formatDate(currentDateTime)}
+//                       </Typography>
+
+//                     </Grid>
+//                     <Grid container alignItems="center">
+//                       <AccessTimeIcon />
+//                       <Typography style={{ marginLeft: 8 }}>
+//                         {formatTime(currentDateTime)}
+//                       </Typography>
+//                     </Grid>
+//                   </Grid>
+
+//                 </Grid>
+//                 {/* <h6>Total Counts: 0</h6> */}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <div className="videoProcessing">
+//         <div className="row">
+//           <div className="col-9">
+//             <h5>Display Video here</h5>
+//           </div>
+//           <div className="col-3">
+//             <h4 className="headingColour">sop compliance</h4>
+//             <div className="partsList">
+//               <p>Parts 1</p>
+//               <p>Parts 2</p>
+//               <p>Parts 3</p>
+//               <p>Parts 4</p>
+//               <p>Parts 5</p>
+//               <p>Parts 6</p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home;

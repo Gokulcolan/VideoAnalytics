@@ -1,0 +1,273 @@
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.topBar {
+  padding: 20px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.headingColour {
+  background-color: #0057ac;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.videoProcessing {
+  padding: 0px 20px;
+  text-align: center;
+}
+
+.partsList p {
+  color: black;
+  border-bottom: solid 1px black;
+  padding: 15px;
+  font-weight: 500;
+  margin-bottom: 0px !important;
+}
+
+.partsList {
+  margin-top: 10px;
+}
+
+
+
+
+.dateandtime {
+  /* float: right; */
+  display: flex;
+  
+  /* margin-bottom: 20px; */
+}
+
+.connectedDevice {
+  display: flex;
+  /* float: right; */
+  ; /* Distribute space between items */
+}
+
+
+
+.counts {
+  background-color: rgb(207, 207, 207);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.newBtn {
+  /* background-color: #f44336 !important; */
+  padding: 10px 20px;
+  border: solid 2px #f44336;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0px 10px 0px;
+  color: #f44336 !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+.newBtn:hover {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.cycleTime {
+  background-color: rgb(207, 207, 207);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 30px 40px;
+}
+
+.cycleTimeGreen {
+  background-color: green;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0px;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.sop-card {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 10px;
+  background-color: #eef3f6;
+}
+
+.sop-card h4 {
+  padding: 15px 0px;
+  background-color: #0057ac;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 20px;
+}
+
+.finalResult .pass {
+  background-color: #00953f;
+  color: white;
+  padding: 10px 0px;
+  border-radius: 5px;
+}
+
+.finalResult .fail {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 0px;
+  border-radius: 5px;
+}
+
+.selectBtn {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px 20px 20px;
+}
+
+.selectBtn button {
+  flex: 1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.selectBtn .ok {
+  /* background-color: #00953f; */
+  color: #00953f;
+  border: solid 2px #00953f;
+}
+
+.selectBtn .ok:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+.selectBtn .notok {
+  color: #f44336;
+  border: solid 2px #f44336;
+}
+
+.selectBtn .notok:hover {
+  background-color: #e53935;
+  color: white;
+}
+
+.pageContainer {
+  background-color: #f0f2f5;
+  /* min-height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  /* padding: 20px; */
+}
+
+.videoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.videoFeed {
+  width: 100%;
+  height: 75vh;
+}
+
+.loadingMessage {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.headTitle {
+  background-color: #0057ac;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+}
+
+.footer {
+  background-color: #282c34; /* Matches with your header background */
+  color: white;
+  text-align: center;
+  padding: 10px 0 0px 0px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+}
+
+.visual-check,.finalResult {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 10px;
+  background-color: #eef3f6;
+  text-align: center !important;
+}
+
+.visual-check h5,
+.finalResult h5 {
+  padding: 15px 0px;
+  background-color: #0057ac;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 20px;
+  text-align: center !important ;
+}
+
+ /* {
+  background-color: #eef3f6;
+} */
+
+.finalResult .res {
+  padding: 15px;
+}
