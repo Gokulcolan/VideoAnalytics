@@ -54,36 +54,34 @@
   padding: 0px 20px;
   text-align: center;
 }
+.partsList {
+  padding-bottom: 10px;
+
+}
 
 .partsList p {
   color: black;
-  border-bottom: solid 1px black;
-  padding: 15px;
+  /* border-bottom: solid 1px black; */
+  padding: 13px;
   font-weight: 500;
   margin-bottom: 0px !important;
+  margin: 10px 10px 0px 10px;
+  border-radius: 15px;
 }
-
-.partsList {
-  margin-top: 10px;
-}
-
 
 
 
 .dateandtime {
   /* float: right; */
   display: flex;
-  
+
   /* margin-bottom: 20px; */
 }
 
 .connectedDevice {
-  display: flex;
-  /* float: right; */
-  ; /* Distribute space between items */
+  /* display: flex; */
+  /* float: right; */ /* Distribute space between items */
 }
-
-
 
 .counts {
   background-color: rgb(207, 207, 207);
@@ -109,23 +107,6 @@
   color: white !important;
 }
 
-.cycleTime {
-  background-color: rgb(207, 207, 207);
-  border-radius: 10px;
-  padding: 10px;
-  margin: 30px 40px;
-}
-
-.cycleTimeGreen {
-  background-color: green;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 10px 0px;
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-
 .sop-card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -134,6 +115,7 @@
 }
 
 .sop-card h4 {
+  margin-bottom: 0px !important;
   padding: 15px 0px;
   background-color: #0057ac;
   color: white;
@@ -245,7 +227,8 @@
   font-size: 14px;
 }
 
-.visual-check,.finalResult {
+.visual-check,
+.finalResult {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 10px;
@@ -264,10 +247,19 @@
   text-align: center !important ;
 }
 
- /* {
-  background-color: #eef3f6;
-} */
-
 .finalResult .res {
   padding: 15px;
+}
+
+.videoSection {
+  background-color: #282c34;
+  border-radius: 10px;
+}
+
+.countList p{
+  color: black;
+  border-bottom: solid 1px black;
+  padding: 10px ;
+  font-weight: 500;
+  margin: 10px 0px 0px 0px;
 }

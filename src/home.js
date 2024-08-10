@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "./assets/tvs-lucas-logo.png";
-import CommonDropdown from "./components/common/commonDropDown";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import VerifiedIcon from "@mui/icons-material/Verified";
@@ -8,7 +7,9 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { useSelector, useDispatch } from "react-redux";
 import { adminSelector } from "./redux/slice/adminSlice";
 import { VerifiedListApi } from "./redux/action/adminAction";
-import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import MonitorIcon from "@mui/icons-material/Monitor";
+import CommonDropdown from "./components/common/commonDropDown";
 
 const Home = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -70,7 +71,6 @@ const Home = () => {
 
   useEffect(() => {
     const videoElement = videoRef.current;
-
     if (videoElement.complete) {
       setIsVideoLoading(false);
     } else {
@@ -115,12 +115,12 @@ const Home = () => {
       <div className="topBar">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-4">
+            <div className="col-2">
               <img src={logo} alt="Logo" className="img-fluid" />
             </div>
-            <div className="col-4">
-              <div className="row">
-                <div className="col-6">
+            <div className="col-8">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div style={{ width: "300px" }}>
                   <CommonDropdown
                     id="age-dropdown"
                     label="Part Number"
@@ -130,18 +130,43 @@ const Home = () => {
                     customChange={setSelectedValue}
                   />
                 </div>
-                <div className="col-6">
-                  <CommonDropdown
-                    id="age-dropdown"
-                    label="Variety"
-                    options={options}
-                    value={selectedValue}
-                    customChange={setSelectedValue}
-                  />
+
+                <div>
+                  <div className="connectedDevice">
+                    <div>
+                      <h6>
+                        <CameraAltIcon
+                          style={{
+                            color:
+                              verifiedPartDetail?.camera_connected === true
+                                ? "green"
+                                : "grey",
+                            
+                          }}
+                        />
+                        {verifiedPartDetail?.camera_connected === true
+                          ? "CAMERA CONNECTED"
+                          : "CAMERA NOT CONNECTED"}
+                      </h6>
+                    </div>
+                    <div>
+                      <h6>
+                        <MonitorIcon
+                          style={{
+                            color:
+                              verifiedPartDetail?.message === "PLC is connected"
+                                ? "green"
+                                : "grey",
+                          }}
+                        />{" "}
+                        PLC NOT CONNECTED
+                      </h6>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-2">
               <div style={{ float: "right" }}>
                 <div className="dateandtime">
                   <h6 style={{ marginRight: "25px" }}>
@@ -157,24 +182,6 @@ const Home = () => {
                     {formatTime(currentDateTime)}
                   </h6>
                 </div>
-                <div className="connectedDevice">
-                  <div style={{ float: "right" }}>
-                    <h6 style={{ marginRight: "65px" }}>
-                      <RadioButtonCheckedIcon
-                        style={{ marginRight: "5px", color: "green" }}
-                      />
-                      PLC
-                    </h6>
-                  </div>
-                  <div>
-                    <h6>
-                      <RadioButtonCheckedIcon
-                        style={{ marginRight: "5px", color: "grey" }}
-                      />{" "}
-                      CAMERA
-                    </h6>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -187,15 +194,15 @@ const Home = () => {
           <div className="col-2">
             <div className="sop-card">
               <h4>Activity Check</h4>
-              <div className="partsList">
+              <div className="countList">
                 <p>Total Counts: 0</p>
               </div>
-              <div className="partsList">
+              <div className="countList">
                 <p style={{ color: "green", fontWeight: "600" }}>
                   Pass Counts: 0
                 </p>
               </div>
-              <div className="partsList">
+              <div className="countList">
                 <p style={{ color: "brown" }}>Fail Count: 0</p>
               </div>
               <div>
@@ -229,29 +236,31 @@ const Home = () => {
             </div>
           </div>
           <div className="col-8">
-            <div className="headTitle">
-              <h4 style={{ fontSize: "20px" }}>GRS PDI VISUAL INSPECTION</h4>
-            </div>
-            <div className="pageContainer">
-              {isVideoLoading && (
-                <div className="loadingMessage">
-                  <h2>
-                    Welcome to{" "}
-                    <span style={{ color: "green", fontWeight: "800" }}>
-                      Lucas TVS DRIVEN
-                    </span>{" "}
-                  </h2>
-                  <h3>AI Video Analytics</h3>
+            <div className="videoSection">
+              <div className="headTitle">
+                <h4 style={{ fontSize: "20px" }}>GRS PDI VISUAL INSPECTION</h4>
+              </div>
+              <div className="pageContainer">
+                {isVideoLoading && (
+                  <div className="loadingMessage">
+                    <h2>
+                      Welcome to{" "}
+                      <span style={{ color: "green", fontWeight: "800" }}>
+                        Lucas TVS
+                      </span>{" "}
+                    </h2>
+                    <h3>AI Video Analytics</h3>
+                  </div>
+                )}
+                <div className="videoContainer">
+                  <img
+                    ref={videoRef}
+                    src="http://192.168.26.52:3000/video_feed"
+                    alt="Video Feed"
+                    className="videoFeed"
+                    style={{ display: isVideoLoading ? "none" : "block" }}
+                  />
                 </div>
-              )}
-              <div className="videoContainer">
-                <img
-                  ref={videoRef}
-                  src="http://192.168.43.100:3000/video_feed"
-                  alt="Video Feed"
-                  className="videoFeed"
-                  style={{ display: isVideoLoading ? "none" : "block" }}
-                />
               </div>
             </div>
           </div>
@@ -260,12 +269,28 @@ const Home = () => {
               <h4>Check Points</h4>
               <div className="partsList">
                 {partsStatus.map((part, i) => (
-                  <p key={i}>
+                  <p
+                    key={i}
+                    style={{
+                      backgroundColor:
+                        part.verified === null
+                          ? "grey"
+                          : part.verified
+                          ? "#00963f"
+                          : "#a93939",
+                      color:
+                        part.verified === null
+                          ? "white"
+                          : part.verified
+                          ? "white"
+                          : "white",
+                    }}
+                  >
                     {part.name}
                     {part.verified === null ? null : part.verified ? (
                       <VerifiedIcon
                         sx={{
-                          color: "#00953f",
+                          color: "white",
                           marginLeft: "10px",
                           fontSize: "30px",
                           float: "right",
@@ -274,9 +299,9 @@ const Home = () => {
                     ) : (
                       <CancelIcon
                         sx={{
-                          color: "red",
+                          color: "white",
                           marginLeft: "10px",
-                          fontSize: "30px",
+                          fontSize: "25px",
                           float: "right",
                         }}
                       />

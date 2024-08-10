@@ -40,6 +40,6 @@ export function VerifiedListApi() {
   return apiHelper(
     verifiedPartReducer,
     "GET",
-    "http://192.168.43.100:3000/object_detected"
+    "/object_detected"
   );
 }
