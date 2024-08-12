@@ -19,11 +19,16 @@ const adminSlice = createSlice({
       state.verifiedPartDetail = apiData;
       state.verfiedPartIsLoading = isLoading;
     },
+    connectedDeviceReducer: (state, { payload }) => {
+      const { apiData, isLoading } = payload;
+      state.connectedDeviceDetail = apiData;
+      state.connectedDeviceIsLoading = isLoading;
+    },
  
   },
 });
 
-export const { partNumberReducer,verifiedPartReducer } = adminSlice.actions;
+export const { partNumberReducer,verifiedPartReducer,connectedDeviceReducer } = adminSlice.actions;
 
 export const adminSelector = (state) => state.admin;
 export const adminReducer = adminSlice.reducer;

@@ -1,7 +1,7 @@
 import { showToast } from "../../components/Toast/toastService";
 import { Apiservice } from "../api/ApiService";
 
-import { partNumberReducer, verifiedPartReducer } from "../slice/adminSlice";
+import { connectedDeviceReducer, partNumberReducer, verifiedPartReducer } from "../slice/adminSlice";
 
 export function apiHelper(
   apiReducer,
@@ -42,4 +42,12 @@ export function VerifiedListApi() {
     "GET",
     "/object_detected"
   );
+}
+
+export function connectedDeviceApi() {
+  return apiHelper(
+    connectedDeviceReducer,
+    "GET",
+    "/camera_plc_status"
+  )
 }

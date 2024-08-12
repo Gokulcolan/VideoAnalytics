@@ -55,7 +55,7 @@
   text-align: center;
 }
 .partsList {
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 
 }
 
@@ -65,7 +65,7 @@
   padding: 13px;
   font-weight: 500;
   margin-bottom: 0px !important;
-  margin: 10px 10px 0px 10px;
+  margin: 15px 15px 0px 15px;
   border-radius: 15px;
 }
 
@@ -112,6 +112,7 @@
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 10px;
   background-color: #eef3f6;
+  margin-bottom: 20px;
 }
 
 .sop-card h4 {

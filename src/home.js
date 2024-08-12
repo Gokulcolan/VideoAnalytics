@@ -6,10 +6,14 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useSelector, useDispatch } from "react-redux";
 import { adminSelector } from "./redux/slice/adminSlice";
-import { VerifiedListApi } from "./redux/action/adminAction";
+import {
+  connectedDeviceApi,
+  VerifiedListApi,
+} from "./redux/action/adminAction";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import MonitorIcon from "@mui/icons-material/Monitor";
 import CommonDropdown from "./components/common/commonDropDown";
+import { showToast } from "./components/Toast/toastService";
 
 const Home = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -17,14 +21,14 @@ const Home = () => {
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [partsStatus, setPartsStatus] = useState([]);
   const [OpenBtn, setOpenBtn] = useState("");
-  const { verifiedPartDetail } = useSelector(adminSelector);
+  const { verifiedPartDetail, connectedDeviceDetail } =
+    useSelector(adminSelector);
   const dispatch = useDispatch();
   const videoRef = useRef(null);
 
   const options = [
-    { value: 10, label: "Ten" },
-    { value: 20, label: "Twenty" },
-    { value: 30, label: "Thirty" },
+    { value: 10, label: "YED-26024986" },
+    { value: 20, label: "PSSF-26024883A" },
   ];
 
   const partsList = [
@@ -102,12 +106,23 @@ const Home = () => {
   }, [verifiedPartDetail]);
 
   const handleClickOk = () => {
-    setOpenBtn("Pass");
+    if (verifiedPartDetail?.not_detected_objects === 0) {
+      setOpenBtn("Pass");
+    } else {
+      // showToast("Check Points not Verified", "error");
+      setOpenBtn("error");
+    }
   };
 
   const handleClickNotOk = () => {
     setOpenBtn("fail");
   };
+
+  useEffect(() => {
+    if (!connectedDeviceDetail) {
+      dispatch(connectedDeviceApi());
+    }
+  }, [connectedDeviceDetail, dispatch]);
 
   return (
     <div>
@@ -138,13 +153,12 @@ const Home = () => {
                         <CameraAltIcon
                           style={{
                             color:
-                              verifiedPartDetail?.camera_connected === true
+                              connectedDeviceDetail?.camera_connected === true
                                 ? "green"
                                 : "grey",
-                            
                           }}
                         />
-                        {verifiedPartDetail?.camera_connected === true
+                        {connectedDeviceDetail?.camera_connected === true
                           ? "CAMERA CONNECTED"
                           : "CAMERA NOT CONNECTED"}
                       </h6>
@@ -154,12 +168,15 @@ const Home = () => {
                         <MonitorIcon
                           style={{
                             color:
-                              verifiedPartDetail?.message === "PLC is connected"
+                              connectedDeviceDetail?.message ===
+                              "PLC is connected"
                                 ? "green"
                                 : "grey",
                           }}
-                        />{" "}
-                        PLC NOT CONNECTED
+                        />
+                        {connectedDeviceDetail?.plc_connected === true
+                          ? "PLC CONNECTED"
+                          : "PLC NOT CONNECTED"}
                       </h6>
                     </div>
                   </div>
@@ -171,13 +188,13 @@ const Home = () => {
                 <div className="dateandtime">
                   <h6 style={{ marginRight: "25px" }}>
                     <DateRangeIcon
-                      style={{ marginRight: "10px", color: "#ff900a" }}
+                      style={{ marginRight: "10px", color: "#0057ac" }}
                     />
                     {formatDate(currentDateTime)}
                   </h6>
                   <h6>
                     <AccessTimeIcon
-                      style={{ marginRight: "5px", color: "#ff900a" }}
+                      style={{ marginRight: "5px", color: "#0057ac" }}
                     />
                     {formatTime(currentDateTime)}
                   </h6>
@@ -209,7 +226,20 @@ const Home = () => {
                 <button className="newBtn">Reset</button>
               </div>
             </div>
-            <br />
+            {/* <br /> */}
+            <div className="sop-card">
+              <h4>Check Points Counts</h4>
+
+              <div className="countList">
+                <p style={{ color: "green", fontWeight: "600" }}>
+                  Verified Counts: 0
+                </p>
+              </div>
+              <div className="countList">
+                <p style={{ color: "brown",borderBottom:"none" }}>Not Verified Counts: 0</p>
+              </div>
+            </div>
+            {/* <br /> */}
             <div className="visual-check">
               <h5>Visual Check Result</h5>
               <div className="selectBtn">
@@ -229,6 +259,16 @@ const Home = () => {
                   <p>Pending...</p>
                 ) : OpenBtn === "Pass" ? (
                   <h5 className="pass">Pass</h5>
+                ) : OpenBtn === "error" ? (
+                  <span
+                    style={{
+                      color: "red",
+                      fontWeight: "600",
+                      fontSize: "18px",
+                    }}
+                  >
+                    Please verify all checkpoints to proceed.
+                  </span>
                 ) : (
                   <h5 className="fail">Fail</h5>
                 )}
@@ -256,7 +296,7 @@ const Home = () => {
                   <img
                     ref={videoRef}
                     src="http://192.168.26.52:3000/video_feed"
-                    alt="Video Feed"
+                    alt="Video is loading ...."
                     className="videoFeed"
                     style={{ display: isVideoLoading ? "none" : "block" }}
                   />
@@ -274,13 +314,13 @@ const Home = () => {
                     style={{
                       backgroundColor:
                         part.verified === null
-                          ? "grey"
+                          ? "#bbbaba"
                           : part.verified
                           ? "#00963f"
                           : "#a93939",
                       color:
                         part.verified === null
-                          ? "white"
+                          ? "black"
                           : part.verified
                           ? "white"
                           : "white",
@@ -310,6 +350,14 @@ const Home = () => {
                 ))}
               </div>
             </div>
+            {/* <div >
+              <p>
+                Verfied Counts : {verifiedPartDetail?.not_detected_objects}{" "}
+              </p>
+              <p>
+                Not Verfied Counts : {verifiedPartDetail?.not_detected_objects}
+              </p>
+            </div> */}
 
             <br />
           </div>

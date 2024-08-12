@@ -124,3 +124,11 @@
 // };
 
 // export default Home;
+
+
+camera_plc_status
+
+detected_objects : [
+    
+]
+not_detected_objects : 11
